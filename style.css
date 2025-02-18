@@ -1,0 +1,75 @@
+body{
+    background-color: rgb(221, 221, 221);
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+.page-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10%;
+    background-color: white;
+    height: 100vh;
+    border-radius: 2em 2em 0px 0px;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.page-container h1{
+    
+   text-align: center;
+   font-family: "Rowdies", serif;
+   font-weight: 100;
+   font-style: normal;
+   margin-top: 20px;
+   margin-bottom: 70px;
+   
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    
+}
+.collection-box{
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; 
+    filter: brightness(0.9); 
+    margin-bottom: 50px;
+    
+
+}
+.collection-box h2{
+    font-size: 55px;
+}
+
+.collection-box:hover{
+    transform: scale(1.1); 
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); 
+    filter: brightness(1.2); 
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+.collection-box:hover h2{
+    font-size: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
