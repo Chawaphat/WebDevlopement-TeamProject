@@ -4,7 +4,20 @@ body{
     padding-right: 10%;
     
 }
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+   
+}
 
+
+/* style for collection page */
 .page-container{
     display: flex;
     align-items: center;
@@ -73,3 +86,4 @@ body{
     border-radius: 5px;
     padding: 5px 10px;
 }
+
