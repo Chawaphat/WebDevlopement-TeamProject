@@ -199,7 +199,7 @@ body{
       margin: 0 auto;
     }
   }
-=======
+/* ======= */
 
 /* Homepage */
 .home-container{
@@ -302,3 +302,156 @@ body{
     white-space: nowrap;
 }
 
+/* ==================================================== */
+  /* Browse page */
+.browse-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+  background-color: white;
+  border-radius: 2em 2em 0px 0px;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: auto;
+}
+
+/* Title styling */
+.browse-container h1 {
+  margin-left: 5%;
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Game grid */
+.browse-container .browse-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Game item styling */
+.browse-container .game-item {
+  width: calc(20% - 20px); /* Ensures 5 items per row */
+  box-sizing: border-box;
+  background: white; /* Slightly lighter dark card */
+  padding: 11px;
+  border-radius: 10px;    
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Game item hover effect */
+.browse-container .game-item:hover {
+  transform: translateY(-5px);
+  backdrop-filter: blur(20px);
+  
+}
+
+/* Game images */
+.browse-container .game-item img {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .browse-container .game-item {
+      width: calc(33.33% - 20px); /* 3 per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .browse-container .game-item {
+      width: calc(50% - 20px); /* 2 per row on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .browse-container .game-item {
+      width: 100%; /* 1 per row on very small screens */
+  }
+}
+
+.browse-container .nav-category {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0; /* Light border */
+  max-width: 800px;
+  margin-left: 5%;
+  margin-bottom: 15px;
+}
+
+/* Navigation items */
+.browse-container .nav-item {
+  flex: 1;
+  text-align: center;
+  font-weight: 400;
+  color: #000000;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Vertical dividers between items */
+.browse-container .nav-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background-color: #e0e0e0;
+}
+
+/* Pagination Container */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+/* Page Number Buttons */
+.page-number {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.page-number:hover {
+  background-color: #f1f1f1;
+}
+
+/* Next and Previous Buttons */
+.page-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.page-btn:hover {
+  color: #007bff;
+}
+
+/* ==================================================== */
