@@ -18,7 +18,7 @@ body{
 
 
 /* style for collection page */
-.page-container{
+.collection-container{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,7 +30,7 @@ body{
     padding-left: 20px;
     padding-right: 20px;
 }
-.page-container h1{
+.collection-container h1{
     
    text-align: center;
    font-family: "Rowdies", serif;
@@ -40,7 +40,8 @@ body{
    margin-bottom: 70px;
    
 }
-.row{
+
+.collection-container .row{
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -86,4 +87,77 @@ body{
     border-radius: 5px;
     padding: 5px 10px;
 }
+
+
+/* Homepage */
+.home-container{
+    margin-top: 10%;
+    background-color: white;
+    height: 100vh;
+    border-radius: 2em 2em 0px 0px;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.home-container .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 1em 1em ;
+}
+
+.home-container .carousel-caption {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 40%;
+    text-align: left;
+}
+
+
+/* pre-purchase now button */
+.home-container .btn-light {
+    background: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
+.home-container .game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+
+.home-container .game-btn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.home-container .game-btn img {
+    width: 60px;
+    height: 65px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.home-container .game-btn:hover {
+    background-color: #e3e3e3;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* .game-btn.active {
+    background-color: #ebebeb;
+    font-weight: bold;
+} */
 
