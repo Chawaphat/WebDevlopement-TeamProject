@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Detail</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+    />
+  <style>
+    .outer-container {
+        background-color: #fff;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      }
+      
+      .product-detail-container {
+        background-image: url('https://picsum.photos/1200/800?game');
+        background-size: cover;
+        background-position: center;
+        height: 800px;
+      }
+      
+      .product-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 80px;
+        padding-left: 90px;
+        padding-right: 90px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 80%);
+        color: #fff;
+      }
+        
+      .game-icon {
+        width: 150px;
+        height: 150px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      
+      .game-text h4 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .game-text p {
+        font-size: 1rem;
+        margin: 0;
+    }
+    </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand me-4" href="index.html">
+        <img src="/img/dekteadgamelogo.png" alt="Logo" width="100" height="30" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup" 
+              aria-controls="navbarNavAltMarkup" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="collection.html">Collection</a>
+          <a class="nav-link" href="browse.html">Browse</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link me-3" href="cart.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-basket" viewBox="0 0 16 16">
+              <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"/>
+            </svg> CART
+          </a>
+          <a class="nav-link" href="profile.html">
+            <img src="/img/IMG_1548.JPEG" alt="Profile" width="30" height="30" class="rounded-circle">
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5 pt-5">
+    <div class="outer-container">
+      <div class="product-detail-container position-relative">
+        <div class="product-overlay">
+          <div class="container">
+            <div class="row align-items-center justify-content-between">
+              <div class="col-md-8">
+                <div class="d-flex align-items-center">
+                  <div class="game-icon me-3">
+                    <img src="https://picsum.photos/seed/gameicon/150/150" alt="Game Icon">
+                  </div>
+                  <div class="game-text">
+                    <h4>Game Title</h4>
+                    <p>
+                      AAAAAAAAAA
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-none d-md-block text-end">
+                <div class="price-add ms-auto">
+                  <div class="price">$49.99</div>
+                  <button class="btn btn-primary">Add to Cart</button>
+                </div>
+              </div>
+              <div class="col-12 d-block d-md-none text-center mt-3">
+                <div class="price-add">
+                  <div class="price">$49.99</div>
+                  <button class="btn btn-primary">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+</html>

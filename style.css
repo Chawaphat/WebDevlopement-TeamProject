@@ -2,6 +2,8 @@ body{
     background-color: rgb(221, 221, 221);
     padding-left: 10%;
     padding-right: 10%;
+    padding-top: 70px; /* เว้นพื้นที่สำหรับ navbar แบบ fixed */
+
     
 }
 .navbar {
@@ -17,7 +19,6 @@ body{
 }
 
 
-/* style for collection page */
 .page-container{
     display: flex;
     align-items: center;
@@ -40,13 +41,15 @@ body{
    margin-bottom: 70px;
    
 }
-.pagec.collection-box{
+
+
+.page-container .row{
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
 }
 
-.collection-box{
+.page-container .collection-box{
     width: 400px;
     height: 300px;
     border-radius: 20px;
@@ -67,11 +70,11 @@ body{
     
 
 }
-.collection-box h2{
+.page-container .collection-box h2{
     font-size: 55px;
 }
 
-.collection-box:hover{
+.page-container .collection-box:hover{
     transform: scale(1.1); 
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); 
     filter: brightness(1.2); 
@@ -80,7 +83,7 @@ body{
     
 }
 
-.collection-box:hover h2{
+.page-container .collection-box:hover h2{
     font-size: 60px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
@@ -163,3 +166,370 @@ body{
     color: #0056b3;
     text-decoration: underline;
   }
+
+
+/* Login  Section  นะจ๊ะ*/
+.login-container {
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Left Image Section */
+  .login-img {
+    position: relative;
+    background-color: #eee;
+  }
+  .login-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* กำหนดความสูงขั้นต่ำในโหมด Desktop */
+    min-height: 100vh;
+  }
+  
+  /* Right Form Section */
+  .login-form {
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  .login-form h1 {
+    font-family: "Bebas Neue", cursive;
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Nav Tabs in Form */
+  .nav-tabs .nav-link {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #555;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .nav-tabs .nav-link.active {
+    color: #000;
+    font-weight: 700;
+    border-color: #007bff;
+  }
+  
+  /* Form Controls */
+  .form-control {
+    border-radius: 50px;
+    padding: 0.75rem 1.2rem;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+  }
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: none;
+  }
+  
+  /* Submit Button */
+  .btn-primary {
+    border-radius: 50px;
+    padding: 0.75rem;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .login-img {
+      display: none;
+    }
+  
+    .login-container {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .login-form {
+      width: 100%;
+      padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .form-wrapper {
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+/* ======= */
+
+/* Homepage */
+.home-container{
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 2em 2em 0px 0px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+/* ส่วนNew release */
+/* สัดส่วนรูปใน card ของ New release บน home page */
+
+
+
+.home-container .banner-carousel .card .card-img-center {
+    width: 100%; 
+    height: 200px; /* กำหนดความสูงตามต้องการ */
+    object-fit: cover;     /* รูปครอบเต็ม card โดยไม่บิดสัดส่วน */
+    object-position: 50% 50%; /* จัดตำแหน่งกลาง (ถ้ารูปใหญ่เกิน) */
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ปรับขนาด card
+.home-container .banner-carousel .card  {
+    width: 100%; 
+    height: 320px; /* กำหนดความสูงตามต้องการ 
+    
+} */
+
+
+/* Homepage รูปใหญ่ที่โชว์เกม landing page */
+.home-container .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 1em 1em ;
+}
+/* คำอธิบายเกมตรง landing page */
+.home-container .carousel-caption {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 40%;
+    text-align: left;
+}
+
+
+/* pre-purchase now button ที่ landing page*/
+.home-container .btn-light {
+    background: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+/* ปุ่มเกมที่เรียงกันลงมาตรง landing page */
+.home-container .game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+/* ปุ่มเลือกเกม landing page */
+.home-container .game-btn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+/* รูปย่อยปุ่ม landing page */
+.home-container .game-btn img {
+    width: 60px;
+    height: 65px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.home-container .game-btn:hover {
+    background-color: #e3e3e3;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* .game-btn.active {
+    background-color: #ebebeb;
+    font-weight: bold;
+} */
+
+#gameScroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
+/* ==================================================== */
+  /* Browse page */
+.browse-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+  background-color: white;
+  border-radius: 2em 2em 0px 0px;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: auto;
+}
+
+/* Title styling */
+.browse-container h1 {
+  margin-left: 5%;
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Game grid */
+.browse-container .browse-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Game item styling */
+.browse-container .game-item {
+  width: calc(20% - 20px); /* Ensures 5 items per row */
+  box-sizing: border-box;
+  background: white; /* Slightly lighter dark card */
+  padding: 11px;
+  border-radius: 10px;    
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Game item hover effect */
+.browse-container .game-item:hover {
+  transform: translateY(-5px);
+  backdrop-filter: blur(20px);
+  
+}
+
+/* Game images */
+.browse-container .game-item img {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .browse-container .game-item {
+      width: calc(33.33% - 20px); /* 3 per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .browse-container .game-item {
+      width: calc(50% - 20px); /* 2 per row on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .browse-container .game-item {
+      width: 100%; /* 1 per row on very small screens */
+  }
+}
+
+.browse-container .nav-category {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0; /* Light border */
+  max-width: 800px;
+  margin-left: 5%;
+  margin-bottom: 15px;
+}
+
+/* Navigation items */
+.browse-container .nav-item {
+  flex: 1;
+  text-align: center;
+  font-weight: 400;
+  color: #000000;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Vertical dividers between items */
+.browse-container .nav-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background-color: #e0e0e0;
+}
+
+/* Pagination Container */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+/* Page Number Buttons */
+.page-number {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.page-number:hover {
+  background-color: #f1f1f1;
+}
+
+/* Next and Previous Buttons */
+.page-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.page-btn:hover {
+  color: #007bff;
+}
+
+/* ==================================================== */
