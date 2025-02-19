@@ -19,7 +19,6 @@ body{
 }
 
 
-/* style for collection page */
 .page-container{
     display: flex;
     align-items: center;
@@ -42,13 +41,14 @@ body{
    margin-bottom: 70px;
    
 }
+
 .page-container .row{
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     
 }
-.collection-box{
+.page-container .collection-box{
     width: 400px;
     height: 300px;
     border-radius: 20px;
@@ -69,11 +69,11 @@ body{
     
 
 }
-.collection-box h2{
+.page-container .collection-box h2{
     font-size: 55px;
 }
 
-.collection-box:hover{
+.page-container .collection-box:hover{
     transform: scale(1.1); 
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); 
     filter: brightness(1.2); 
@@ -82,12 +82,13 @@ body{
     
 }
 
-.collection-box:hover h2{
+.page-container .collection-box:hover h2{
     font-size: 60px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     padding: 5px 10px;
 }
+
 
 /* Login  Section  นะจ๊ะ*/
 .login-container {
@@ -198,3 +199,106 @@ body{
       margin: 0 auto;
     }
   }
+=======
+
+/* Homepage */
+.home-container{
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 2em 2em 0px 0px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+/* ส่วนNew release */
+/* สัดส่วนรูปใน card ของ New release บน home page */
+
+
+
+.home-container .banner-carousel .card .card-img-center {
+    width: 100%; 
+    height: 200px; /* กำหนดความสูงตามต้องการ */
+    object-fit: cover;     /* รูปครอบเต็ม card โดยไม่บิดสัดส่วน */
+    object-position: 50% 50%; /* จัดตำแหน่งกลาง (ถ้ารูปใหญ่เกิน) */
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ปรับขนาด card
+.home-container .banner-carousel .card  {
+    width: 100%; 
+    height: 320px; /* กำหนดความสูงตามต้องการ 
+    
+} */
+
+
+/* Homepage รูปใหญ่ที่โชว์เกม landing page */
+.home-container .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 1em 1em ;
+}
+/* คำอธิบายเกมตรง landing page */
+.home-container .carousel-caption {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 40%;
+    text-align: left;
+}
+
+
+/* pre-purchase now button ที่ landing page*/
+.home-container .btn-light {
+    background: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+/* ปุ่มเกมที่เรียงกันลงมาตรง landing page */
+.home-container .game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+/* ปุ่มเลือกเกม landing page */
+.home-container .game-btn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+/* รูปย่อยปุ่ม landing page */
+.home-container .game-btn img {
+    width: 60px;
+    height: 65px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.home-container .game-btn:hover {
+    background-color: #e3e3e3;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* .game-btn.active {
+    background-color: #ebebeb;
+    font-weight: bold;
+} */
+
+#gameScroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
