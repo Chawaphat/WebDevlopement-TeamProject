@@ -15,12 +15,13 @@ User Interface (UI) Design
 ```
 https://www.figma.com/design/mzG6Qcy4dKXVRY3d7AyHNj/Kaopadpu?node-id=0-1&p=f&t=iRQNIVUheTzk9wfI-0
 ```
-Link Demo Clip and Document
+Link Demo Clip and  Document of kao-pad-poo-special team
 ```
-https://o365cmu-my.sharepoint.com/my?id=%2Fpersonal%2Fchayodom%5Fj%5Fcmu%5Fac%5Fth%2FDocuments%2FDemo%20clip&ga=1
+https://o365cmu-my.sharepoint.com/:f:/g/personal/chayodom_j_cmu_ac_th/EuH0Y0CUOG5Lk6S3lNFPuGQBm1nPqJBeEbu6w22kKDfR-w?e=hOCbAK
 ```
 
-Lnik to repository a GitHuB for Action and a Deploy DevOp (The repository in GitHub Classroom cannot use the GitHub Action, so we fork the project in the GitHub classroom to our member repository,)
+
+Link to repository a GitHuB for Action and a Deploy DevOp (The repository in GitHub Classroom cannot use the GitHub Action, so we fork the project in the GitHub classroom to our member repository,)
 ```
 https://github.com/THANATHIPSTD/term-project-kao-pad-poo-special-DEVOP.git
 ```
