@@ -15,7 +15,7 @@ User Interface (UI) Design
 ```
 https://www.figma.com/design/mzG6Qcy4dKXVRY3d7AyHNj/Kaopadpu?node-id=0-1&p=f&t=iRQNIVUheTzk9wfI-0
 ```
-Link Demo Clip 
+Link Demo Clip and Document
 ```
 https://o365cmu-my.sharepoint.com/my?id=%2Fpersonal%2Fchayodom%5Fj%5Fcmu%5Fac%5Fth%2FDocuments%2FDemo%20clip&ga=1
 ```
