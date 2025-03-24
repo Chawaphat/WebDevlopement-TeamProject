@@ -1,0 +1,46 @@
+<%- include('partials/head.ejs', { pageTitle: 'Add Category' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="backoffice-page">
+  <!-- Sidebar -->
+  <%- include('partials/sidebar.ejs', { activePage: 'categories' }) %>
+  
+  <!-- Main Content -->
+  <div class="backoffice-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="fw-bold">Add Category</h3>
+    </div>
+    <form action="/backoffice/categories/add" method="POST" class="mt-4">
+      <div class="mb-3">
+        <label class="fw-bold text-muted">Category Name</label>
+        <input type="text" name="name" class="form-control mt-2" placeholder="Sri-fi Game" required>
+      </div>
+      <div class="mb-3">
+        <label class="fw-bold text-muted">Category Image URL</label>
+        <input type="text" name="category_image" class="form-control mt-2" placeholder="http://example.com/image.jpg" id="imageURL" oninput="previewImage()">
+        <div class="mt-2">
+          <img id="imagePreview" src="" alt="Image Preview" class="img-thumbnail" style="max-width: 250px; display: none;">
+        </div>
+      </div>
+      <div class="mt-4">
+        <button type="button" class="btn btn-dark me-2" onclick="window.history.back();">Cancel</button>
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function previewImage() {
+    const input = document.getElementById('imageURL');
+    const img = document.getElementById('imagePreview');
+    if (input.value) {
+      img.src = input.value;
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+  }
+</script>
+
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,2332 @@
+body {
+  background-color: rgb(241, 241, 238);
+  padding-left: 10%;
+  padding-right: 10%;
+  height: auto;
+  padding-top: 63px; /* เว้นพื้นที่สำหรับ navbar แบบ fixed */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 20px;
+}
+.page-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5%;
+  background-color: white;
+  border-radius: 2em ;
+  margin-bottom: 5%;
+  padding-bottom: 100px;
+  padding-top: 2%;
+}
+.page-container h1{
+ text-align: center;
+ font-weight: 100;
+ font-style: normal;
+ margin-top: 20px;
+ margin-bottom: 70px;
+font-weight: bold;
+ 
+}
+
+.page-container .row{
+
+  display: flex;
+  gap: 1vw;
+}
+
+
+
+.page-container .collection-box{
+
+  width: clamp(220px, 20vw, 430px);
+  height: auto; /* ให้ความสูงปรับอัตโนมัติตามอัตราส่วน */
+  aspect-ratio: 4 / 3;
+  position: relative;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; 
+  filter: brightness(0.9); 
+  
+    
+}
+@media (max-width: 720px) {
+  .page-container .collection-box{
+    margin-bottom: 8%;
+  }
+}
+.page-container .collection-box h2{
+font-size: clamp(25px,3vw,50px);
+text-shadow: #000000 0px 0px 10px;
+}
+
+.page-container .collection-box:hover{
+  transform: scale(1.1) !important; 
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3)!important; 
+  filter: brightness(1.01); 
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+
+.page-container .collection-box:hover h2{
+font-size: clamp(25px,3.2vw,50px);    
+background: rgba(0, 0, 0, 0.5);
+border-radius: 5px;
+padding: 5px 10px;
+}
+
+
+/* //////////////////////////////////////// */
+
+/* profile-styling */
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: white;
+  min-height: 100vh;
+  border-radius: 2em ;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  flex-grow: 1;
+}
+
+.welcome-box{
+  margin-top: 100px;
+  margin-left: 4px;
+}
+
+.color-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8%;
+  background: linear-gradient(to right, #abcdf3, #fdf2d3);
+  border-top-left-radius: 2em; /* ทำให้มุมซ้ายบนโค้ง */
+  border-top-right-radius: 2em; /* ทำให้มุมขวาบนโค้ง */
+}
+.profile-avatar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 80px;
+  gap: 20px;
+  margin-left: 8px;
+  justify-content: space-between;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.profile-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  transition: all 0.3s ease-in-out; /* ทำให้เอฟเฟกต์เปลี่ยนนุ่มนวล */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเบาๆ */
+  transform: translateY(0); /* ตั้งค่าเริ่มต้น */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* เอฟเฟกต์เมื่อ Hover */
+.profile-image:hover {
+  transform: translateY(-20px); /* ทำให้รูป "ลอยขึ้น" */
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูลอยขึ้น */
+}
+
+/* เอฟเฟกต์เมื่อ Click */
+.profile-image:active {
+  transform: translateY(-5px) scale(0.98); /* กดแล้วลดลงเล็กน้อย */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation ตอนโหลด */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+
+.profile-info h3 {
+  
+  font-size: clamp(14px,1.7vw,20px);
+  
+}
+.profile-info p {
+  color: gray;
+  font-size: clamp(10px,1.5vw,16px);
+  margin-left: 1.4px;
+}
+
+.profile-info .form-group input {
+  width: 120%;
+  padding: 10px;
+  font-size: clamp(2px, 1vw, 15px);
+  border: 1px solid transparent;
+  border-radius: 17px;
+  background-color: #f8f8f8;
+  transition: all 0.3s ease-in-out;
+}
+
+
+@media (max-width: 576px) {
+  .profile-avatar {
+      flex-direction: column; /* เรียงแนวตั้ง */
+      align-items: center; /* จัดให้อยู่กึ่งกลาง */
+      text-align: center;
+      position: relative;
+  }
+
+  /* ทำให้ข้อความไปอยู่บนรูป */
+  .profile-info {
+      position: absolute;
+      top: 0; /* ให้ขึ้นไปอยู่ด้านบน */
+      left: 48%;
+      transform: translateX(-50%);
+      color: rgb(0, 8, 78); /* ทำให้ตัวอักษรสีขาว (หรือเปลี่ยนได้) */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      white-space: nowrap;
+  }
+
+  .profile-info h3 {
+      font-size: 4vw;
+      margin-bottom: 2px;
+      
+  }
+
+  .profile-info p {
+      font-size: 3vw;
+  }
+
+  /* ทำให้รูปขยายใหญ่ขึ้นและอยู่ตรงกลาง */
+  .profile-image {
+      width: 35vw;
+      height: 35vw;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 70px;
+  }
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 10px; 
+  justify-content: flex-end;
+  margin-left: auto;
+  width: 30%;
+  
+}
+
+.form-container .profile-buttons {
+  display: none;
+}
+
+@media (max-width: 576px) {
+
+  .profile-avatar .profile-buttons{
+      display: none;
+  }
+
+  .form-container .profile-buttons {
+      width: 100%; /* ปุ่มขยายเต็มความกว้าง */
+      display: flex;
+      flex-direction: row; /* จัดเรียงปุ่มเป็นแนวนอน */
+      justify-content: space-between;
+      gap: 10px; /* เว้นระยะห่าง */
+      margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+      margin-bottom: 40px;
+  }
+  .profile-buttons button:hover {
+      background-color: #0056b3;
+  }
+  
+  .form-container .profile-buttons button:first-child {
+      flex: 0 0 40%; /* กว้าง 40% ของพื้นที่ที่มี */
+      padding: 15px;
+      font-size: 16px;
+  }
+  .form-container .profile-buttons button:last-child {
+      flex: 0 0 56%; /* กว้าง 60% ของพื้นที่ที่มี */
+      padding: 15px;
+      font-size: 16px;
+  }
+
+  .form-container {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .form-container .profile-buttons {
+      order: 1; /* ทำให้ profile-buttons เป็นลำดับสุดท้าย */
+  }
+}
+
+
+.profile-buttons button {
+
+  width: 40%;
+  padding: 10px 20px;
+  font-size: 1vw;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.profile-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.profile-buttons button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.profile-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.form-container {
+  
+  margin-top: 20px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.form-group {
+  
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: clamp(14px, 2vw, 20px);
+  margin-left: 5px;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 20px;
+  font-size: clamp(14px, 2vw, 20px);
+  border: 1px solid transparent;
+  border-radius: 17px;
+  background-color: #f8f8f8;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #96c9ff; /* เปลี่ยนขอบให้เป็นสีฟ้า */
+  background-color: #ffffff; /* เปลี่ยนพื้นหลังให้เป็นขาว */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* เพิ่มเงาสีฟ้า */
+  outline: none; /* ลบเส้นขอบที่เกิดจาก browser */
+  color: #007bff;
+  transform: scale(1.02);
+  font-style: bold;
+}
+.form-group input:focus::placeholder {
+  
+  transition: opacity 0.3s;
+}
+
+/* register */
+ .regis-container {
+  margin-top: 6rem;  
+  margin-bottom: 6rem;
+ 
+}
+
+
+.regis-form-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.regis-form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+.regis-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.regis-form-card .form-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.regis-form-card .form-control {
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.regis-form-card .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #80bdff;
+}
+
+.regis-form-card .btn-outline-secondary {
+  border-color: #ced4da;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.regis-form-card .btn-outline-secondary:hover {
+  background-color: #ebebeb;
+}
+
+.regis-form-card .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.regis-form-card .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.regis-form-card .text-center a.fw-bold.text-decoration-none {
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.regis-form-card .text-center a.fw-bold.text-decoration-none:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+
+/* Login  Section  นะจ๊ะ*/
+
+.auth-page .logo-container {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  z-index: 1000; /* ให้โลโก้อยู่ข้างบนทุกอย่าง */
+}
+
+.auth-page .logo-container img {
+  width: 100px;
+  height: 28px;
+}
+
+
+.auth-page {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  background-color: white;
+
+}
+
+.auth-page .login-container {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/* Left Image Section */
+
+@media (max-width: 768px) {
+  .login-form {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-img {
+    display: none !important;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+
+
+.auth-page .login-img {
+  flex: 1; /* ให้มันขยายเท่าๆ กัน */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-page .login-img img{
+  width: 70vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.auth-page .row{
+  display: flex;
+}
+
+/* Right Form Section */
+.auth-page .login-form, .auth-page .register-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* เรียงเนื้อหาแนวตั้ง */
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 350px;
+  min-height: 400px; /* กำหนดให้ฟอร์มมีความสูงเท่ากัน */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+/* กำหนดให้ฟอร์มของทั้ง login และ register มีขนาดเท่ากัน */
+.login-form .form-wrapper, .register-form .form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.login-form h1 {
+  
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.register-form h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Nav Tabs in Form */
+.nav-tabs .nav-link {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+.nav-tabs .nav-link.active {
+  color: #000;
+  font-weight: 700;
+  border-color: #007bff;
+}
+
+/* Form Controls */
+.form-control {
+  border-radius: 50px;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+/* Submit Button */
+.btn-primary {
+  border-radius: 50px;
+  padding: 0.75rem;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .login-img {
+    display: none;
+  }
+
+  .login-container {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  .login-form {
+    width: 100%;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-wrapper {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+/* ======= */
+
+/* Homepage */
+/* General Styles */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.home-container {
+  margin-top: 3%;
+  padding: 20px 40px;
+  background-color: white;
+  border-radius: 2em;
+  max-width: 1800px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 4%;
+}
+
+@media (max-width: 576px) {
+  .home-container {
+    margin-bottom: 13%;
+  }
+}
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+/* Carousel Item Image */
+.carousel-item img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Content Card in Carousel */
+.carousel-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  padding-left: 30px;
+  text-align: left;
+  color: white;
+  border-radius: 0 0 15px 15px;
+}
+.carousel-indicators{
+  display: none;
+}
+
+.carousel-caption-overlay h5 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.carousel-caption-overlay p {
+  font-size: 1rem;
+}
+
+.carousel-caption-overlay .pricing {
+  margin: 10px 0;
+}
+
+.carousel-caption-overlay .price {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.carousel-caption-overlay .old-price {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.carousel-caption-overlay .new-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff5252;
+}
+
+.carousel-caption-overlay .buy-now-btn {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.buy-now-btn {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 12px 25px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.buy-now-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Mobile Style */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: auto;
+    max-height: 250px; /* Reduced height for mobile */
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+
+  .carousel-caption-overlay {
+    position: static;
+    width: 100%;
+    padding: 10px 5px; /* Reduced padding */
+    text-align: center;
+    background-color: black;
+  }
+}
+
+/* สำหรับหน้าจอขนาดกลาง (768px - 1024px) */
+@media (max-width: 1024px) {
+  
+
+  .carousel-caption-overlay {
+    padding: 12px; /* ลด padding */
+  }
+
+  .carousel-caption-overlay h5 {
+    font-size: 1.1rem; /* ลดขนาดตัวอักษร */
+  }
+
+  .carousel-caption-overlay p {
+    font-size: 0.95rem; /* ลดขนาดตัวอักษร */
+  }
+
+  .carousel-caption-overlay .price {
+    font-size: 0.95rem; /* ลดขนาดตัวอักษร */
+  }
+
+  .carousel-caption-overlay .old-price {
+    font-size: 0.85rem; /* ลดขนาดตัวอักษร */
+  }
+
+  .carousel-caption-overlay .new-price {
+    font-size: 1.1rem; /* ลดขนาดตัวอักษร */
+  }
+
+  .carousel-caption-overlay .buy-now-btn {
+    padding: 6px 15px; /* ลดขนาด padding */
+    font-size: 0.8rem; /* ลดขนาดตัวอักษร */
+    margin-bottom: 20px; /* ลดระยะห่างด้านล่าง */
+  }
+}
+
+/* สำหรับหน้าจอขนาดเล็ก (ต่ำกว่า 768px) */
+/* สำหรับหน้าจอขนาดเล็ก (ต่ำกว่า 768px) */
+/* สำหรับหน้าจอขนาดเล็ก (ต่ำกว่า 768px) */
+/* สำหรับหน้าจอขนาดเล็ก (ต่ำกว่า 768px) */
+@media (max-width: 768px) {
+  .carousel-caption-overlay h5 {
+    font-size: 0.7rem; /* ลดขนาดตัวอักษรลงมาก */
+    margin-bottom: 2px; /* ลดระยะห่างระหว่าง h5 กับ p */
+  }
+
+  .carousel-caption-overlay p {
+    font-size: 0.6rem; /* ลดขนาดตัวอักษรลงมาก */
+    margin-bottom: 2px; /* ลดระยะห่างระหว่าง p กับ ราคา */
+  }
+
+  .carousel-caption-overlay .pricing {
+    display: flex; /* ใช้ flexbox เพื่อให้แสดงในแถวเดียว */
+    justify-content: center; /* จัดให้อยู่กลางแนวนอน */
+    align-items: center; /* จัดให้แนวตั้งอยู่กลาง */
+    flex-wrap: wrap; /* ทำให้สามารถย่อขนาดได้ถ้าจำเป็น */
+  }
+
+  .carousel-caption-overlay .price {
+    font-size: 0.55rem;
+    margin-right: 5px; /* ลดระยะห่างระหว่างราคาปกติและราคาลด */
+  }
+
+  .carousel-caption-overlay .old-price {
+    font-size: 0.5rem;
+    text-decoration: line-through;
+    color: #ccc;
+    margin-right: 5px; /* ลดระยะห่างระหว่างราคาปกติและราคาลด */
+  }
+
+  .carousel-caption-overlay .new-price {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #ff5252;
+  }
+
+  .carousel-caption-overlay .buy-now-btn {
+    padding: 2px 5px; /* ลดขนาด padding ให้เล็กลง */
+    font-size: 0.5rem; /* ลดขนาดตัวอักษรลงมาก */
+    margin-top: 1px; /* ลดระยะห่างด้านบนของปุ่ม */
+    margin-bottom: 20px; /* ลดระยะห่างด้านล่าง */
+  }
+}
+
+
+/* Game List - Styling for Desktop */
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.game-btn {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-btn img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.game-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* New Releases Section */
+.new-releases-section {
+  margin-top: 50px;
+}
+
+.new-releases-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.scrolling-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.new-release-card {
+  flex: 0 0 auto;
+  width: 180px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.new-release-card:hover {
+  transform: scale(1.05);
+}
+
+.new-release-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.new-release-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.new-release-info h6 {
+  font-weight: 600;
+}
+
+.new-release-info p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.new-release-info .price,
+.new-release-info .old-price,
+.new-release-info .new-price {
+  color: black;
+}
+
+.new-release-info .old-price {
+  text-decoration: line-through;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.new-release-info .new-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff5252;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .new-releases-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .game-list {
+    display: none; /* Hide Game List */
+  }
+}
+
+/* New Release Card - Mobile Adjustments */
+@media (max-width: 768px) {
+  .new-release-card {
+    width: 150px; /* Reduce the card size */
+    font-size: 0.9rem; /* Scale down font size */
+    padding: 5px; /* Reduce padding */
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .new-release-card img {
+    height: 150px; 
+    width: 150px;
+  }
+
+  .new-release-info h6 {
+    font-size: 0.9rem; /* Smaller title */
+  }
+
+  .new-release-info p {
+    font-size: 0.9rem; /* Smaller description text */
+  }
+
+  .new-release-info .old-price {
+    font-size: 0.9rem; /* Smaller old price */
+  }
+
+  .new-release-info .new-price {
+    font-size: 1rem; /* Smaller new price */
+  }
+
+
+}
+/* New Release Card - Mobile Adjustments */
+@media (max-width: 768px) {
+  .new-release-card {
+    width: 130px; /* Make the card more compact */
+    font-size: 0.85rem; /* Even smaller font size */
+    padding: 5px; /* Further reduce padding */
+  }
+
+  .new-release-card img {
+    height: 120px; /* Smaller image */
+    width: 120px;  /* Keep aspect ratio consistent */
+  }
+
+  .new-release-info h6 {
+    font-size: 0.85rem; /* Smaller title */
+  }
+
+  .new-release-info p {
+    font-size: 0.75rem; /* Even smaller description text */
+  }
+
+  .new-release-info .old-price {
+    font-size: 0.75rem; /* Smaller old price */
+  }
+
+  .new-release-info .new-price {
+    font-size: 0.85rem; /* Smaller new price */
+  }
+
+  .buy-now-btn {
+    font-size: 0.75rem; /* Smaller font size for button */
+    padding: 5px 12px; /* Reduce button padding */
+  }
+}
+/* ==================================================== */
+/* Browse page */
+/* Container หลัก */
+
+/* Title */
+.browse-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Category Bar */
+.category-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto; /* เพิ่มการเลื่อนแนวนอนถ้ามีหมวดหมู่เยอะ */
+  white-space: nowrap; /* ทำให้หมวดหมู่ทั้งหมดอยู่ในแถวเดียว */
+  padding-bottom: 10px; /* เพิ่มระยะห่างด้านล่างเพื่อให้ดูสมดุล */
+}
+
+.category-item {
+  display: inline-block;
+  background-color: #f9f9f9;
+  padding: 8px 16px; /* ปรับขนาด padding ให้พอดี */
+  border-radius: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+  font-size: 14px; /* ปรับขนาดฟอนต์ให้เหมาะสม */
+}
+
+.category-item:hover {
+  background-color: #e3e3e3;
+}
+
+.category-item.active {
+  background-color: #000; /* สีดำ */
+  color: #fff; /* ตัวอักษรขาว */
+}
+
+/* Grid 4x4 Icon */
+.games-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 1rem;
+  justify-content: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* Card ของแต่ละเกม (ไม่มีกรอบ-เงา) */
+.game-card {
+  width: calc(25% - 15px); /* 4 columns on larger screens */
+  background-color: transparent;
+  box-shadow: none;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.05) !important;
+  
+}
+
+/* แสดง 2 คอลัมน์เมื่อขนาดหน้าจอเล็กที่สุด */
+@media (max-width: 480px) {
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* แสดง 2 คอลัมน์ */
+    gap: 20px;
+  }
+  .game-card {
+    width: 100%; /* ทำให้การแสดงผลคอลัมน์ไม่เบียดกัน */
+  }
+}
+
+/* For small screens (2 columns) */
+@media (max-width: 768px) {
+  .game-card {
+    width: calc(50% - 20px); /* 2 columns on small screens */
+  }
+}
+
+/* For medium screens (3 columns) */
+@media (max-width: 1024px) {
+  .game-card {
+    width: calc(33.33% - 15px); /* 3 columns on medium screens */
+  }
+}
+
+/* รูปเกมมีขอบมน */
+.game-icon {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px; /* ขอบมน */
+}
+
+/* ราคาและชื่อเกม */
+.price {
+  margin-top: 1px; 
+  font-size: 1rem;
+  font-weight: bold;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 5px;
+}
+.new-price {
+  color: #d9534f;
+  font-weight: bold;
+}
+.title {
+  margin-top: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* เมื่อไม่มีเกม */
+.no-games {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #888;
+  margin-top: 10rem;
+  height: 250px;
+
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1.5rem;
+}
+.page-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+.page-btn:hover {
+  background-color: #ddd;
+}
+.page-numbers {
+  display: flex;
+  gap: 4px;
+}
+.page-btn-number {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.page-btn-number:hover {
+  background-color: #eee;
+}
+/* เลขหน้า Active เป็นสีดำ */
+.page-btn-number.active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .game-card {
+    width: calc(33.33% - 15px); /* 3 คอลัมน์ */
+  }
+}
+@media (max-width: 768px) {
+  .game-card {
+    width: calc(50% - 10px); /* 2 คอลัมน์ */
+  }
+}
+@media (max-width: 480px) {
+  .game-card {
+    width: 100%; /* 1 คอลัมน์เต็มจอ */
+  }
+}
+.browse-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 26px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative; /* Keeps position relative for child elements */
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100%;
+  max-width: 500px;
+  z-index: 999;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: none;
+}
+
+/* Search input style */
+.search-input {
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Search button style */
+.search-btn {
+  padding: 8px 20px;
+  font-size: 1rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #e3e0e0;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .search-bar-container {
+    position: static;  /* Remove fixed position */
+    width: 100%;
+    margin-top: 20px; /* Space between All Games and Search Bar */
+    max-width: none;
+    text-align: center; /* Center align the search bar */
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 480px) {
+  /* ปรับการแสดงผล Grid */
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px; /* ลดระยะห่างระหว่างไอเทม */
+    margin: 0; /* ลบ margin ข้างๆ */
+    padding: 0 8px; /* เพิ่ม padding ข้างใน */
+  }
+
+  /* กำหนดขนาดภาพให้เท่ากันทุกไอเทม */
+  .game-icon {
+    aspect-ratio: 1/1; /* กำหนดอัตราส่วนสี่เหลี่ยมจัตุรัส */
+    object-fit: cover; /* ตัดภาพให้เต็มพื้นที่ */
+    height: 160px; /* กำหนดความสูงคงที่ */
+  }
+
+  /* กำหนดความสูงให้ส่วนข้อความ */
+  .game-card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .title {
+    font-size: 0.85rem !important; /* ปรับขนาดตัวอักษร */
+    line-height: 1.2;
+    min-height: 34px; /* กำหนดความสูงขั้นต่ำ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0;
+  }
+
+  .price {
+    font-size: 0.9rem !important;
+    margin-top: auto; /* ดันราคาลงล่างสุด */
+    padding: 4px 0;
+  }
+
+  /* ปรับสไตล์ราคาพิเศษ */
+  .old-price {
+    font-size: 0.75rem !important;
+  }
+  
+  .new-price {
+    font-size: 0.9rem !important;
+  }
+
+  /* ปรับการเว้นช่องไฟ */
+  .browse-container {
+    padding: 20px 12px;
+    border-radius: 16px;
+  }
+}
+.price-select {
+  width: 500px;
+  margin-left: 10px;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+
+/* ==================================================== */
+
+footer {
+  width: 100vw;
+  position: relative;
+  left: -12%;
+  right: -12%;
+  padding: 40px 10% !important;
+  margin-top: auto;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+/* Cart */
+/* ========== Main Cart Container ========== */
+.cartpage-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@media (max-width: 576px) {
+  .cartpage-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
+
+/* ========== Cart Items ========== */
+.cartpage-item {
+  border: 1px solid #e9ecef;
+  border-radius: 30px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.cartpage-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 12px rgba(0, 114, 206, 0.08);
+}
+
+.cartpage-item img {
+  border-radius: 30px;
+  border: 2px solid #f8f9fa;
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+  max-width: 150px;
+}
+
+@media (max-width: 767px) {
+  .cartpage-item {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cartpage-item img {
+    max-width: 80px;
+    border-radius: 10px;
+  }
+}
+
+/* ========== Price Styles ========== */
+.cartpage-discount-price {
+  color: #28a745;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.cartpage-original-price {
+  color: #6c757d;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.cartpage-price {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .cartpage-discount-price,
+  .cartpage-price {
+    font-size: 0.95rem !important;
+  }
+  
+  .cartpage-original-price {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ========== Delete Button ========== */
+.btn-outline-danger {
+  padding: 0.25rem 0.5rem !important;
+  border-width: 1px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+/* ========== Empty Cart State ========== */
+.empty-cart {
+  padding: 2rem 1rem;
+  background: #f8f9fa;
+  border-radius: 16px;
+  margin: 2rem 0;
+}
+
+.empty-cart-icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.empty-cart h3 {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+@media (min-width: 768px) {
+  .empty-cart {
+    padding: 3rem 1.5rem;
+  }
+  
+  .empty-cart-icon svg {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* ========== Cart Summary ========== */
+.cartpage-summary {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.cartpage-summary-price {
+  color: #1a1a1a;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 576px) {
+  .cartpage-summary {
+    padding: 1rem;
+  }
+  
+  .cartpage-summary-price {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  /* ปรับระบบ Grid ใหม่ */
+  .cartpage-item {
+    grid-template-areas:
+      "image details delete"
+      "image price price";
+    grid-template-columns: 80px 1fr auto;
+    gap: 0.1rem !important;
+    padding: 0.75rem !important;
+    align-items: start;
+  }
+
+  /* ปรับตำแหน่งและขนาดปุ่มลบ */
+  .cartpage-item > .col-4 {
+    grid-area: delete;
+    align-self: start;
+    margin-top: -0.2rem;
+    padding: 0 !important;
+  }
+
+  /* ปรับขนาดและตำแหน่งรายละเอียดเกม */
+  .cartpage-item > .col-8 {
+    grid-area: details;
+    padding-right: 0;
+    margin-top: -0.1rem;
+  }
+
+  /* ปรับตำแหน่งราคา */
+  .cartpage-item .d-flex {
+    grid-area: price;
+    padding-left: 0;
+    margin-top: 0.3rem;
+  }
+
+  /* ปรับขนาดตัวอักษร */
+  .cartpage-item h2 {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.1rem !important;
+    line-height: 1.2;
+  }
+
+  .cartpage-item .text-muted {
+    font-size: 0.65rem !important;
+  }
+
+  /* ปรับปุ่มลบให้เล็กและสูงขึ้น */
+  .btn-outline-danger {
+    padding: 0.25rem !important;
+    min-width: 24px;
+    height: 24px;
+    margin-top: 0.4rem;
+  }
+  
+  .btn-outline-danger svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+/* -------------------- backoffice --------------------- */
+
+.backoffice-page {
+color: #333;
+margin-top: 8%;
+}
+
+.backoffice-page .sidebar {
+width: 250px;
+height: 100vh;
+background: #F5F5F5;
+position: fixed;  
+left: 0;
+top: 0;
+padding-top: 80px;
+padding-left: 15px;
+overflow-y: auto; 
+}
+
+.backoffice-page .sidebar a {
+display: flex;
+align-items: center;
+padding: 12px 15px;
+color: #333;
+text-decoration: none;
+border-radius: 5px;
+font-weight: 500;
+margin-bottom: 8px;
+}
+
+.backoffice-page .sidebar a:hover {
+background: #e9e9e9;
+}
+
+.backoffice-page .sidebar a.active {
+background: #EFEFF4;
+}
+
+.backoffice-container {
+margin-left: 270px; 
+max-width: 1200px;   
+padding: 40px;
+background-color: white;
+border-radius: 15px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .backoffice-page .sidebar {
+    position: static;   
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  .backoffice-container {
+    margin-left: 0;      
+    margin-top: 10px;
+  }
+}
+
+.backoffice-container-manageHomeRelease{
+  padding: 40px;
+  margin-left: 270px; 
+  gap: 50px;
+  background-color: white;
+  border-radius: 15px;
+}
+/* .backoffice-container-manageHomeRelease{
+  margin-left: 270px; 
+  
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+} */
+.backoffice-container-manageHomeRelease .table {
+  
+  flex: 1;
+  min-width: 300px;
+  max-height: 50vh; /* ให้แต่ละตารางเต็มพื้นที่ */
+  overflow-y: auto; /* แสดง scrollbar ในแต่ละตาราง */
+}
+
+.backoffice-container-manageHomeRelease .table thead th {
+  position: sticky;
+  top: -1px; /* ทำให้ header ติดกับด้านบนเมื่อเลื่อน */
+  background-color: #f8f9fa; /* เพิ่มสีพื้นหลังเพื่อให้เห็นหัวข้อตารางชัดเจน */
+  z-index: 3;         /* ทำให้ <th> อยู่ด้านหน้าของเนื้อหาของตาราง */ 
+  
+}
+
+.backoffice-container-manageHomeRelease .buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .backoffice-container-manageHomeRelease {
+    margin-left: -20px; 
+    gap: 200px;
+  }
+  .backoffice-container-manageHomeRelease .sidebar {
+    max-height: none;
+  }
+
+  .backoffice-container-manageHomeRelease .buttons-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .backoffice-container-manageHomeRelease .table {
+  
+    flex: 1;
+    min-width: 20px;
+    max-height: 50vh; /* ให้แต่ละตารางเต็มพื้นที่ */
+    overflow-y: auto; /* แสดง scrollbar ในแต่ละตาราง */
+  }
+
+  
+}
+
+.managehomepagenewre{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-height: 80vh; /* กำหนดความสูงสูงสุดของตาราง */
+  overflow-y: auto;  /* แสดง scrollbar เมื่อเนื้อหามากเกินไป */
+  padding-right: 15px;  /* เพิ่มระยะห่างข้างขวาเพื่อไม่ให้ scrollbar ติดขอบ */
+}
+
+
+
+  .collection-link {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+
+  .category-nav{
+    position: relative;
+    height: 40px;
+  }
+
+
+
+
+  .collection-link {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+  .category-nav{
+    position: relative;
+    height: 40px;
+  }
+
+  .browse-category-link{
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+  /* ปรับความสูงให้เหมาะสม */
+  .select2-container--default .select2-selection--multiple {
+    border: 1px solid #ccc; /* ขอบแบบ Bootstrap */
+    
+    border-radius: 50px;
+    padding: 0.75rem 1.2rem;
+    margin-top: 10px;
+    min-height: 38px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  }
+
+  /* ปรับให้ดูสวยขึ้นเมื่อเลือกหมวดหมู่ */
+  .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b0f3ff; /* สีพื้นหลัง */
+    color: #020000;
+    border-radius: 50px;
+    padding: 6px 12px; /* ขยาย padding ให้สมดุล */
+    font-size: 17px;
+    border: none;
+    margin: 3px;
+  }
+
+  .browse-category-link{
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+/* ปรับ Select2 ให้ขยายเต็มจอ */
+.select2-container {
+  width: 100% !important;
+}
+
+/* สไตล์ของ Select2 */
+.select2-container--default .select2-selection--multiple {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 0.75rem 1.2rem;
+  margin-top: 10px;
+  min-height: 38px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+/* ปรับให้ดูสวยขึ้นเมื่อเลือกหมวดหมู่ */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b0f3ff; /* สีพื้นหลัง */
+  color: #020000;
+  border-radius: 50px;
+  padding: 6px 12px; /* ขยาย padding ให้สมดุล */
+  font-size: 17px;
+  border: none;
+  margin: 3px;
+}
+
+
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: #007bff;
+  
+}
+
+
+/* ปรับให้ช่องค้นหาดูสะอาดขึ้น */
+.select2-container--default .select2-search--inline .select2-search__field {
+  padding: 5px;
+  border: none;
+}
+
+/* ปรับปุ่มลบให้ดูสวย */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f77f7f;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+/* ปรับ dropdown ให้ดูมีมิติ */
+.select2-container--default .select2-dropdown {
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* เมื่อ dropdown เปิดให้ transition ทำงาน */
+.select2-container--open .select2-dropdown {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ทำให้รายการ dropdown แสดงแบบ fade-in */
+.select2-results__options {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* เมื่อ dropdown เปิดให้ transition ทำงาน */
+.select2-container--open .select2-results__option {
+  opacity: 1;
+  max-height: 300px;
+}
+/* ทำให้ Select2 ใช้งานได้เหมือน Bootstrap */
+.select2-container .select2-selection--single {
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* ปรับให้ Select2 มีขอบเหมือน Bootstrap */
+.select2-container--default .select2-selection--single {
+  border-radius: 0.25rem;
+}
+
+/* ปรับให้ Select2 โฟกัสมีขอบเหมือน Bootstrap */
+.select2-container--default .select2-selection--single:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* ปรับ Select2 ให้รองรับ Responsive */
+@media (max-width: 768px) {
+  .select2-container--default .select2-selection--multiple {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* productdetail _________________ */
+/* ---------- Product Detail Page Styles ---------- */
+/* Main container */
+.container.my-5.pt-5 {
+  padding-top: 2rem !important;
+}
+
+/* Hero Section */
+.rounded-outer {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #242424;
+  margin-top: -4%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.upper-hero-section {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  opacity: 0.9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Gradient Shadow Effect */
+.gradient-shadow {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 2;
+}
+
+/* Lower Content Section */
+.lower-section {
+  background-color: #000;
+  position: relative;
+  z-index: 3;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding: 2rem;
+}
+
+/* Video Card */
+.video-card {
+  background-color: #111;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Game Info Card */
+.option-card {
+  background-color: #222;
+  border-radius: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background-color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Platform Buttons */
+.platform-btn {
+  border: 2px solid #444 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  text-align: center;
+}
+
+.platform-btn:hover {
+  border-color: #007bff !important;
+  background-color: rgba(0,123,255,0.1) !important;
+  color: white !important;
+}
+
+.platform-btn.selected {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: white !important;
+}
+
+/* Add to Cart Button */
+.btn-add-cart {
+  background: linear-gradient(135deg, #007bff 0%, #0062cc 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-add-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+}
+
+/* Animations */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.bounce {
+  animation: bounce 0.6s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .lower-section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .rounded-outer {
+    margin-top: -6%;
+    border-radius: 1rem;
+  }
+  
+  .upper-hero-section {
+    aspect-ratio: 16 / 6;
+  }
+  
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  
+  .container.my-5.pt-5 {
+    padding-top: 0.5rem !important;
+    margin-top: 15px;
+  }
+
+  .hero-overlay {
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.3rem !important;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-subtitle {
+    
+    font-size: 0.5rem !important;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .upper-hero-section {
+    aspect-ratio: 16 / 6;
+  }
+
+  .productnamelow {
+    font-size: 1rem;
+  }
+  
+  .lower-section {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .btn-add-cart {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .platform-btn {
+    min-width: 70px;
+    font-size: 0.8rem !important;
+  }
+}
+/* ____________________________________________________________________________________ */
+
+.cart-badge {
+  position: absolute;
+  top: -8px;         /* ปรับตำแหน่งตามต้องการ */
+  right: -8px;       /* ปรับตำแหน่งตามต้องการ */
+  background-color: #dc3545; /* สีพื้นหลัง (Bootstrap Danger) */
+  color: #fff;       /* สีตัวอักษรขาว */
+  font-size: 10px;   /* ขนาดฟอนต์ปกติ */
+  font-weight: 700;  /* ความหนาฟอนต์ */
+  line-height: 1;    /* ลดช่องว่างแนวตั้ง */
+  padding: 3px 6px;  /* ระยะห่างภายในแนวนอน/แนวตั้ง */
+  border: 2px solid #fff; /* ขอบสีขาวบาง ๆ ให้ดูเด่น */
+  border-radius: 50%;     /* ทำให้เป็นวงกลม */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* เงาเล็กน้อย */
+  visibility: visible; /* ให้แสดงอยู่ตลอดเวลา */
+  opacity: 1; /* ให้เห็นตลอดเวลา */
+}
+
+/* การตั้งค่าเอฟเฟกต์ Bounce */
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);  /* ขยายใหญ่ขึ้นมากกว่าเดิม */
+  }
+  100% {
+    transform: scale(1);  /* คืนขนาดเดิม */
+  }
+}
+
+.cart-badge.bounce {
+  animation: bounce 0.6s ease-in-out;  /* ทำให้เด้งเมื่อกด Add to Cart */
+}
+
+/* การตั้งค่าเอฟเฟกต์ Shake */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.platform-btn.shake {
+  animation: shake 0.5s ease;  /* ทำให้สั่นได้ */
+}
+
+/* Mappppppppppppppppppppppppppppppppppppppppppppppp */
+#map {
+  width: 100%; height: 200px
+}
+
+
+/*order receipt */
+
+.receipt-container{
+  margin-top: 40px;
+}
+
+.invoice {
+  background: #fff;
+  padding: 20px
+}
+
+.invoice-company {
+  font-size: 20px
+}
+
+.invoice-header {
+  margin: 0 -20px;
+  background: #f0f3f4;
+  padding: 20px
+}
+
+.invoice-date,
+.invoice-from,
+.invoice-to {
+  display: table-cell;
+  width: 1%
+}
+
+.invoice-from,
+.invoice-to {
+  padding-right: 20px
+}
+
+.invoice-date .date,
+.invoice-from strong,
+.invoice-to strong {
+  font-size: 16px;
+  font-weight: 600
+}
+
+.invoice-date {
+  text-align: right;
+  padding-left: 20px
+}
+
+.invoice-price {
+  background: #f0f3f4;
+  display: table;
+  width: 100%
+}
+
+.invoice-price .invoice-price-left,
+.invoice-price .invoice-price-right {
+  display: table-cell;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 75%;
+  position: relative;
+  vertical-align: middle
+}
+
+.invoice-price .invoice-price-left .sub-price {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 20px
+}
+
+.invoice-price small {
+  font-size: 12px;
+  font-weight: 400;
+  display: block
+}
+
+.invoice-price .invoice-price-row {
+  display: table;
+  float: left
+}
+
+.invoice-price .invoice-price-right {
+  width: 25%;
+  background: #2d353c;
+  color: #fff;
+  font-size: 28px;
+  text-align: right;
+  vertical-align: bottom;
+  font-weight: 300
+}
+
+.invoice-price .invoice-price-right small {
+  display: block;
+  opacity: .6;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px
+}
+
+.invoice-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  font-size: 10px
+}
+
+.invoice-note {
+  color: #999;
+  margin-top: 80px;
+  font-size: 85%
+}
+
+.invoice>div:not(.invoice-footer) {
+  margin-bottom: 20px
+}
+
+.btn.btn-white, .btn.btn-white.disabled, .btn.btn-white.disabled:focus, .btn.btn-white.disabled:hover, .btn.btn-white[disabled], .btn.btn-white[disabled]:focus, .btn.btn-white[disabled]:hover {
+  color: #2d353c;
+  background: #fff;
+  border-color: #d9dfe3;
+}
+

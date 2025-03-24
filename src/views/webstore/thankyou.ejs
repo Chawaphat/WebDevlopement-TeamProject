@@ -1,0 +1,169 @@
+<%- include('partials/head.ejs', { pageTitle: 'Thank You' }) %>
+
+<style>
+  /* Apple-inspired Thank You Page */
+  .thankyou-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f7;
+  }
+
+  .thankyou-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  .confirmation-card {
+    width: 100%;
+    max-width: 800px;
+    padding: 4rem;
+    background: #ffffff;
+    border-radius: 2rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .checkmark-container {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #0071E3, #004DE3);
+    border-radius: 50%;
+    margin: 0 auto 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: checkmarkScale 0.8s ease-out;
+  }
+
+  .checkmark {
+    width: 50px;
+    height: 50px;
+    fill: white;
+  }
+
+  .thankyou-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 1.5rem;
+  }
+
+  .order-details {
+    font-size: 1.2rem;
+    color: #86868b;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .apple-button {
+    padding: 1.2rem 2.5rem;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+  }
+
+  .primary-button {
+    background: #0071E3;
+    color: white;
+    border: 1px solid #0071E3;
+  }
+
+  .secondary-button {
+    background: transparent;
+    color: #0071E3;
+    border: 1px solid #0071E3;
+  }
+
+  @keyframes checkmarkScale {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  /* Decorative Elements */
+  .confetti {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #0071E3;
+    opacity: 0.1;
+    animation: confettiFall 3s infinite linear;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+</style>
+
+<body class="thankyou-page">
+  <%- include('partials/nav.ejs') %>
+
+  <div class="thankyou-content">
+    <div class="confirmation-card" data-aos="zoom-in">
+      <!-- Confetti Animation -->
+      <div class="confetti" style="left: 10%; animation-delay: 0.2s"></div>
+      <div class="confetti" style="left: 30%; animation-delay: 0.5s"></div>
+      <div class="confetti" style="left: 50%; animation-delay: 0.8s"></div>
+      <div class="confetti" style="left: 70%; animation-delay: 1.1s"></div>
+      <div class="confetti" style="left: 90%; animation-delay: 1.4s"></div>
+
+      <div class="checkmark-container">
+        <svg class="checkmark" viewBox="0 0 24 24">
+          <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+        </svg>
+      </div>
+
+      <h1 class="thankyou-title">Payment Successful!</h1>
+      
+      <div class="order-details">
+        Order Number: #GS<%= orderId %><br>
+        A confirmation email has been sent to:<br>
+        <strong><%= email %></strong>
+      </div>
+
+      <div class="button-container">
+        <a href="/browse" class="apple-button primary-button">
+          <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1z"/>
+          </svg>
+          Continue Shopping
+        </a>
+
+        <a href="/history" class="apple-button secondary-button">
+          <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+          </svg>
+          View Order History
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer.ejs') %>
+
+  <!-- AOS Animation Initialization -->
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-back'
+    });
+  </script>
+</body>
+</html>
+
+  

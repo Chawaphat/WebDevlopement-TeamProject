@@ -1,0 +1,180 @@
+
+<%- include('partials/head.ejs', { pageTitle: 'Manage homepage' }) %>
+
+<%- include('partials/nav.ejs') %>
+
+<div class="backoffice-page">
+  <!-- Sidebar -->
+  <%- include('partials/sidebar.ejs', { activePage: 'managehomepage' }) %>
+  
+  <!-- Main Content -->
+  <div class="backoffice-container-manageHomeRelease">
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold">HighlightGame</h3>
+          </div>
+          <form id="homepageForm" action="/backoffice/homepage/update" method="POST">
+            <div class="table-responsive" style="max-height: 40vh; overflow-y: auto;">
+            <table class="table category-table">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Icon</th>
+                    <th>Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+              <% if (products && products.length > 0) { %>
+                <% products.forEach(function(prod){ %>
+                  <tr>
+                      <td>
+                          <!-- ถ้า prod.position มีค่า แสดงว่าถูกเลือกแล้ว ให้ checkbox ติ๊กไว้ -->
+                          <input 
+                            type="checkbox" 
+                            name="homepageGames" 
+                            value="<%= prod.game_id %>"
+                            class="homepage-checkbox"
+                            <%= prod.position ? 'checked' : '' %> 
+                          />
+                        </td>
+                        <td>
+                          <% if (prod.icongame_url) { %>
+                            <img src="<%= prod.icongame_url %>" alt="Icon" class="img-thumbnail" style="max-width: 50px; height: auto;">
+                          <% } else { %>
+                            -
+                          <% } %>
+                        </td>
+                    <td><%= prod.title %></td>
+                    
+
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="4">No products found.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+          </div>
+
+          <button type="submit" class="btn btn-danger mt-3">Save HighlightGame Selection</button>
+          </form>
+          </div>
+
+          <!-- ตารางแสดงลำดับเกมที่เลือกไว้ -->
+          <div class="col-lg-6 col-md-12 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 class="fw-bold">Homepage Order</h3>
+            </div>
+          <div class="table-responsive" style="max-height: 40vh; overflow-y: auto;">
+          <table class="table category-table" id="selectedGamesTable">
+              <thead>
+                <tr>
+                  <th>Position</th>
+                  <th>Icon</th>
+                  <th>Title</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% 
+                  // สร้างตัวแปร selectedProducts เป็นรายการเกมที่มี position (ไม่ null)
+                  const selectedProducts = products.filter(p => p.position !== null);
+                  // เรียงตาม position (ASC)
+                  selectedProducts.sort((a, b) => a.position - b.position);
+                %>
+                <% if (selectedProducts.length > 0) { %>
+                  <% selectedProducts.forEach((prod, index) => { %>
+                    <tr data-gameid="<%= prod.game_id %>">
+                      <td><%= prod.position %></td>
+                      <td>
+                        <% if (prod.icongame_url) { %>
+                          <img src="<%= prod.icongame_url %>" alt="Icon" class="img-thumbnail" style="max-width: 50px; height: auto;">
+                        <% } else { %>
+                          -
+                        <% } %>
+                      </td>
+                      <td><%= prod.title %></td>
+                      
+                      <td>
+                        <!-- ปุ่ม Arrow Buttons -->
+                        <button type="button" class="btn btn-sm btn-outline-secondary move-up">↑</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary move-down">↓</button>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr><td colspan="5">No selected products for homepage.</td></tr>
+                <% } %>
+              </tbody>
+            </table>
+        
+            <!-- ปุ่ม Save Reorder -->
+            
+          </div>
+          <button type="button" class="btn btn-danger mt-3" id="saveReorderBtn">Save Reorder Highlight Game</button>
+    </div>    
+
+<script>
+
+
+     // ---------- จัดการ Arrow Buttons ----------
+  document.querySelectorAll('.move-up').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('tr');
+      const prevRow = row.previousElementSibling;
+      if (prevRow) {
+        // ย้าย row ขึ้นไปเหนือ row ด้านบน
+        row.parentNode.insertBefore(row, prevRow);
+      }
+    });
+  });
+
+  document.querySelectorAll('.move-down').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('tr');
+      const nextRow = row.nextElementSibling;
+      if (nextRow) {
+        // ย้าย row ลงไปใต้ row ด้านล่าง
+        nextRow.after(row);
+      }
+    });
+  });
+
+  // ---------- จัดการปุ่ม Save Reorder ----------
+  const saveBtn = document.getElementById('saveReorderBtn');
+  saveBtn.addEventListener('click', () => {
+    // อ่านลำดับใหม่จากบนลงล่างในตาราง
+    const rows = document.querySelectorAll('#selectedGamesTable tbody tr');
+    const reorderData = [];
+    rows.forEach((r, idx) => {
+      const gameId = r.getAttribute('data-gameid');
+      reorderData.push({ gameId: gameId, position: idx + 1 });
+    });
+
+    // ส่ง reorderData ไปอัปเดตใน server ผ่าน fetch หรือ AJAX
+    fetch('/backoffice/homepage/reorder', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reorderData })
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.reload(); // reload หน้า เพื่อดูผลลัพธ์
+      } else {
+        alert('Error saving reorder');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Error saving reorder');
+    });
+  });
+</script>
+  
+  <%- include('partials/footer.ejs') %>

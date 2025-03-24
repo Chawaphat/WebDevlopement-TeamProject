@@ -1,0 +1,177 @@
+<%- include('partials/head.ejs', { pageTitle: 'Manage Categories' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="backoffice-page">
+  <!-- Sidebar -->
+  <%- include('partials/sidebar.ejs', { activePage: 'categories' }) %>
+  
+  <!-- Main Content -->
+  <div class="backoffice-container-manageHomeRelease">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="fw-bold">Browse</h3>
+        </div>
+    <form id="newReleaseForm" > 
+      <div class="table-responsive" style="max-height: 40vh; overflow-y: auto;">
+      <table class="table category-table">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>icon</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (browse && browse.length > 0) { %>
+            <% browse.forEach(function(game){ %>
+              <tr>
+                <td>
+                  <input 
+                    type="checkbox" 
+                    name="newReleaseGames" 
+                    value="<%= game.game_id %>"
+                    class="newrelease-checkbox"
+                  />
+                </td>
+
+                <td>
+                  <% if (game.icongame_url) { %>
+                    <img src="<%= game.icongame_url %>" alt="Icon" class="img-thumbnail" style="max-width: 50px; height: auto;">
+                  <% } else { %>
+                    -
+                  <% } %>
+                </td>
+                
+                <td><%= game.title %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="4">No products found.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+      <button type="submit" class="btn btn-danger mt-3">Update Game Category Selected</button>
+    </form>
+  </div>
+
+  <div class="col-lg-6 col-md-12 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="fw-bold"><%= name %> Game</h3>
+    </div>
+    <!-- ตารางแสดงลำดับเกมที่เลือกไว้ -->
+
+
+    <!-- Container สำหรับแบ่งหน้า -->
+    <div class="table-responsive" style="max-height: 40vh; overflow-y: auto;">
+      <table class="table category-table" id="selectedNewReleaseTable">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Icon</th>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="paginatedTableBody">
+            <% 
+    category.sort((a, b) => a.position - b.position);
+%>
+<% if (category.length > 0) { %>
+  <% category.forEach((category, index) => { %>
+    <tr data-gameid="<%= category.game_id %>">
+      <td><%= index+1 %></td>
+      <td>
+        <% if (category.icon) { %>
+          <img src="<%= category.icon %>" alt="Icon" class="img-thumbnail" style="max-width: 50px; height: auto;">
+        <% } else { %>
+          -
+        <% } %>
+      </td>
+      <td><%= category.title %></td>
+      <td>
+        <button type="button" class="btn btn-sm btn-outline-secondary " id="removeGame" style="background-color: rgb(255, 9, 9);">🗑️</button>
+      </td>
+    </tr>
+  <% }); %>
+<% } else { %>
+  <tr><td colspan="5">No Games in this category.</td></tr>
+<% } %>
+          
+        </tbody>
+      </table>
+
+    </div>
+    
+  </div>
+    
+  </div>
+  
+
+</div>
+
+<script>
+  document.getElementById('newReleaseForm').addEventListener('submit', (e) => {
+  e.preventDefault(); // ป้องกันการส่งฟอร์ม
+
+  const selectedGames = [];
+  
+  // ดึงข้อมูลเกมที่ถูกเลือกจากตารางแรก
+  document.querySelectorAll('.newrelease-checkbox:checked').forEach((checkbox) => {
+    const row = checkbox.closest('tr');
+    const gameId = row.querySelector('input').value;
+    selectedGames.push(gameId);
+  });
+  console.log('Selected Games:', selectedGames);
+  
+  const categoryId = '<%= category_id %>';
+
+  fetch(`/backoffice/categories/update/${categoryId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ selectedGames })
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.reload();
+    } else {
+      alert('Error saving reorderelse');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Error saving reorder');
+  });
+
+});
+
+    $('#paginatedTableBody').on('click','#removeGame',function(){
+                
+        const gameId = $(this).closest('tr').data('gameid');
+        const categoryId = '<%= category_id %>' ; 
+
+        fetch(`/backoffice/categories/gamedelete/${gameId}/${categoryId}`,{
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Success:', data);
+        window.location.reload();
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+
+    });
+      
+
+
+</script>
+
+<%- include('partials/footer.ejs') %>

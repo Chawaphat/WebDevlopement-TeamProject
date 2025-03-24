@@ -1,0 +1,75 @@
+<%- include('partials/head.ejs', { pageTitle: 'Manage Categories' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="backoffice-page">
+  <!-- Sidebar อยู่ด้านซ้าย -->
+  <%- include('partials/sidebar.ejs', { activePage: 'categories' }) %>
+  
+  <!-- Main Content -->
+  <div class="backoffice-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="fw-bold">Categories</h3>
+      <a href="/backoffice/categories/add" class="btn btn-dark btn-sm">+ Add New Category</a>
+    </div>
+    
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="d-none d-md-table-header-group">
+          <tr>
+            <th>Category Name</th>
+            <th class="d-none d-md-table-cell">Category Image</th> <!-- ซ่อนบนมือถือ -->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (categories && categories.length > 0) { %>
+            <% categories.forEach(function(category){ %>
+              <tr>
+                <!-- ชื่อหมวดหมู่ -->
+                <td class="fw-bold"><%= category.name %></td>
+                
+                <!-- รูปภาพ (แสดงเฉพาะ Desktop) -->
+                <td class="d-none d-md-table-cell">
+                  <% if (category.category_image) { %>
+                    <img src="<%= category.category_image %>" 
+                         alt="Category Image" 
+                         class="img-thumbnail" 
+                         style="max-width:80px;">
+                  <% } else { %>
+                    No image
+                  <% } %>
+                </td>
+                
+                <!-- ปุ่มดำเนินการ -->
+                <td>
+                  <div class="d-flex flex-md-row flex-column gap-1">
+                    <a href="/backoffice/categories/update/<%= category.category_id %>" 
+                       class="btn btn-dark btn-sm flex-fill">
+                       Update
+                    </a>
+                    <a href="/backoffice/categories/edit/<%= category.category_id %>" 
+                       class="btn btn-dark btn-sm flex-fill">
+                       Edit
+                    </a>
+                    <a href="/backoffice/categories/delete/<%= category.category_id %>" 
+                       class="btn btn-danger btn-sm flex-fill"
+                       onclick="return confirm('Are you sure to delete this category?');">
+                       Delete
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="3" class="text-center py-4">No categories found.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

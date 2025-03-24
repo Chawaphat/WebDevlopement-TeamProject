@@ -1,0 +1,153 @@
+<%- include('partials/head.ejs', { pageTitle: 'Profile' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="welcome-box">
+  <h2 style="color:rgb(34, 41, 141)">Welcome, <%= user.first_name %> <%= user.last_name %></h2>
+  <p id="current-date" style="color: rgb(156, 156, 156);"></p>
+  <script>
+    const date = new Date();
+    const weekday = date.toLocaleDateString("en-GB", { weekday: "short" });
+    const day = date.toLocaleDateString("en-GB", { day: "2-digit" });
+    const month = date.toLocaleDateString("en-GB", { month: "long" });
+    const year = date.toLocaleDateString("en-GB", { year: "numeric" });
+    document.getElementById("current-date").innerText = `${weekday}, ${day} ${month} ${year}`;
+  </script>
+</div>
+
+<div class="profile-container">
+  <div class="color-bar"></div>
+
+  <div class="row">
+
+    <div class="profile-avatar">
+      <img src="<%= user.profile_image || 'https://pbs.twimg.com/profile_images/1283676276314632193/D1Wnm-EW_400x400.jpg' %>" alt="Profile Image" class="profile-image" id="originImageURL">
+      <div class="profile-info">
+        <h3 ><%= user.first_name %> <%= user.last_name %></h3>
+        <p><%= user.email %></p>
+        <div class="form-group" style="display: none;" id="form-newImage">
+          <input type="text" name="newImageURL" id="newImageURL" placeholder="Enter new profile image URL" >
+        </div>
+      </div>
+      <div class="profile-buttons">
+        <button id="editBtn">EDIT</button>
+        <button id="saveBtn" style="background-color:black" disabled>SAVE</button>
+      </div>
+
+    </div>
+
+
+    
+    <div class="form-container">
+
+      <div class="row">
+        
+        <div class="form-group col-sm-6 col-12">
+          <label>First Name</label>
+          <input type="text" value="<%= user.first_name %>" readonly name="firstName" id="firstName">
+        </div>
+
+        <div class="form-group col-sm-6 col-12">
+          <label>Last Name</label>
+          <input type="text" value="<%= user.last_name %>" readonly name="lastName" id="lastName">
+        </div>
+
+        <div class="form-group col-sm-6 col-12">
+          <label>Phone Number</label>
+          <input type="text" value="<%= user.phone_number %>" readonly name="phoneNumber" id="phoneNumber">
+        </div>
+
+        <div class="form-group col-sm-6 col-12">
+          <label>Address</label>
+          <input type="text" value="<%= user.address %>" readonly name="address" id="address">
+        </div>
+
+        <div class="form-group col-sm-6 col-12">
+          <label>Email</label>
+          <input type="email" value="<%= user.email %>" readonly name="email" id="email">
+        </div>
+
+        <div class="form-group col-sm-6 col-12">
+          <label>New Password</label>
+          <input type="password" name="newPassword" id="newPassword" readonly placeholder="Enter new password">
+        </div>
+
+        <div class="profile-buttons">
+          <button id="editBtn">EDIT</button>
+          <button id="saveBtn" style="background-color:black" disabled>SAVE</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const inputFields = document.querySelectorAll("input");
+          const editBtn = document.getElementById("editBtn");
+          const saveBtn = document.getElementById("saveBtn");
+
+          
+
+          const formNewImage = document.getElementById('form-newImage');
+          const originImage = document.getElementById('originImageURL');
+          const newImage = document.getElementById('newImageURL');
+          
+
+          editBtn.addEventListener("click", function() {
+            inputFields.forEach(input => {
+              input.removeAttribute("readonly");
+            });
+            inputFields[0].focus();
+            saveBtn.removeAttribute("disabled");
+            formNewImage.style.display = "block";
+
+          });
+
+          saveBtn.addEventListener("click", function() {
+            inputFields.forEach(input => {
+              input.setAttribute("readonly", true);
+            });
+            saveBtn.setAttribute("disabled", true);
+            formNewImage.style.display = "none";
+
+            const imgURL = newImage.value ? newImage.value: originImage.src;
+            
+            const userData = {
+              firstName: $('#firstName').val(),
+              lastName: $('#lastName').val(),
+              phoneNumber: $('#phoneNumber').val(),
+              address: $('#address').val(),
+              email: $('#email').val(),
+              newPassword: $('#newPassword').val(),
+              img: imgURL
+            };
+
+            console.log(userData);
+            
+            fetch('/profile',{
+              method: 'POST',
+              headers:{
+                'Content-Type' : 'application/json',
+              },
+              body: JSON.stringify(userData),
+            })
+            .then(response => {
+              if(response.redirected){
+                window.location.href = response.url;
+              }
+            })
+            .catch(error =>{
+              console.error('Error:', error);
+              alert('Failed to update profile.');
+            });
+          });
+
+
+        });
+      </script>
+
+
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,94 @@
+<%- include('partials/head.ejs', { pageTitle: 'Home Page' }) %>
+<body>
+  <%- include('partials/nav.ejs') %>
+
+  <div class="home-container"data-aos="fade-up">
+    <!-- Banner Section -->
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <div class="carousel-container" data-aos="fade-up">
+          <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" data-aos="fade-up">
+              <% featuredGames.forEach((game, index) => { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                  <div class="carousel-image">
+                    <!-- Link to Product Detail on image click -->
+                    <a href="/product/<%= game.game_id %>">
+                      <img src="<%= game.main_image_url %>" alt="<%= game.title %>" class="d-block w-100" />
+                    </a>
+                  </div>
+                  <div class="carousel-caption-overlay">
+                    <h5><%= game.title %></h5>
+                    <p><%= game.description %></p>
+                    <div class="pricing">
+                      <% if (game.promotion_price) { %>
+                        <span class="old-price">฿<%= game.price %></span>
+                        <br>
+                        <span class="new-price">฿<%= game.promotion_price %></span>
+                      <% } else { %>
+                        <span class="price">฿<%= game.price %></span>
+                      <% } %>
+                    </div>
+                    <!-- Direct link for "View Details" can also be here -->
+                    <a href="/product/<%= game.game_id %>" class="btn buy-now-btn">View Details</a>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+            <div class="carousel-indicators" data-aos="fade-up-left">
+              <% featuredGames.forEach((game, index) => { %>
+                <button type="button" data-bs-target="#gameCarousel" data-bs-slide-to="<%= index %>"
+                  class="<%= index === 0 ? 'active' : '' %>"></button>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <div class="game-list">
+          <% if (featuredGames && featuredGames.length > 0) { %>
+            <% featuredGames.forEach((game, index) => { %>
+              <button class="game-btn" data-bs-target="#gameCarousel" data-bs-slide-to="<%= index %>">
+                <img src="<%= game.icongame_url %>" alt="<%= game.title %>">
+                <%= game.title %> 
+              </button>
+            <% }); %>
+          <% } else { %>
+            <p>No featured games found.</p>
+          <% } %>
+        </div>
+      </div>
+
+    <!-- New Releases Section -->
+    <div class="new-releases-section" data-aos="fade-left">
+      <h2>Games for you</h2>
+      <div class="scrolling-carousel" data-aos="fade-up">
+        <% newReleaseGames.forEach(game => { %>
+          <!-- Link to Product Detail on image click -->
+          <a href="/product/<%= game.game_id %>">
+            <div class="new-release-card">
+              <img src="<%= game.icongame_url %>" alt="<%= game.title %>" />
+              <div class="new-release-info">
+                <h6><%= game.title %></h6>
+                <p>
+                  <% if (game.promotion_price) { %>
+                    <span class="old-price">฿<%= game.price %></span>
+                    <br>
+                    <span class="new-price">฿<%= game.promotion_price %></span>
+                  <% } else { %>
+                    ฿<%= game.price %>
+                  <% } %>
+                </p>
+              </div>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <%- include('partials/footer.ejs') %>
+</body>

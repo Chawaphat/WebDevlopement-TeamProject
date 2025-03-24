@@ -1,0 +1,10 @@
+<div class="sidebar d-none d-md-block">
+  <a href="/backoffice/categories" class="<%= activePage === 'categories' ? 'active' : '' %>">Categories</a>
+  <a href="/backoffice/products" class="<%= activePage === 'products' ? 'active' : '' %>">Product</a>
+  <a href="/backoffice/managehomepage" class="<%= activePage === 'managehomepage' ? 'active' : '' %>">Manage highlight game</a>
+  <a href="/backoffice/managenewrelease" class="<%= activePage === 'managenewrelease' ? 'active' : '' %>">Manage new release game</a>
+  <% if (locals.session && locals.session.email === 'admin@gmail.com') { %>
+    <a href="/backoffice/manageusers" class="<%= activePage === 'manageusers' ? 'active' : '' %>">Manage Users</a>
+  <% } %>
+  <a href="/backoffice/order_history" class="<%= activePage === 'orderhistory' ? 'active' : '' %>">Order History</a>
+</div>

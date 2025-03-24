@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+      <a class="navbar-brand" href="/" style="margin-right:100px">
+          <img src="/img/dekteadgamelogo.png" alt="" width="100" height="30" class="d-inline-block align-text-top">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-link <%= activePage === 'home' ? 'active' : '' %>" href="/">Home</a>
+              <a class="nav-link <%= activePage === 'collection' ? 'active' : '' %>" href="/collection">Collection</a>
+              <a class="nav-link <%= activePage === 'browse' ? 'active' : '' %>" href="/browse">Browse</a>
+              <% if (locals.session.role === 'Admin') { %>
+                <a class="nav-link <%= activePage === 'backoffice' ? 'active' : '' %>" href="/backoffice">Enter Backoffice</a>
+              <% } %>
+          </div>
+
+          <!-- right side nav -->
+          <div class="navbar-nav ms-auto text-center d-flex justify-content-center">
+              <a class="nav-link d-flex justify-content-center align-items-center <%= activePage === 'cart' ? 'active' : '' %>" href="/cart">
+                  <span class="position-relative me-2"> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
+                          <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 
+                          1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 
+                          1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 
+                          2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 
+                          1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 
+                          0 1 .686-.172zM2 9v4.5A1.5 
+                          1.5 0 0 0 3.5 15h9a1.5 1.5 0 
+                          0 0 1.5-1.5V9zM1 7v1h14V7zm3 
+                          3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 
+                          0v-3A.5.5 0 0 1 4 10m2 0a.5.5 
+                          0 0 1 .5.5v3a.5.5 0 0 1-1 
+                          0v-3A.5.5 0 0 1 6 10m2 
+                          0a.5.5 0 0 1 .5.5v3a.5.5 
+                          0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 
+                          .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5" />
+                      </svg>
+                      <% if (itemCount > 0) { %>
+                        <span id="cartBadge" class="cart-badge"><%= itemCount %></span>
+                      <% } else { %>
+                        <span id="cartBadge" class="cart-badge d-none"></span>
+                      <% } %>
+                  </span>
+                  <span>Cart</span>
+              </a>
+              
+              <% if (locals.session && locals.session.userId) { %>
+              <a tabindex="0" class="nav-link <%= activePage === 'Profile' ? 'active' : '' %>" id="profilePopover" data-bs-toggle="popover" data-bs-placement="bottom" style="cursor: pointer;"
+                  data-bs-content=" 
+                  <a href='/profile' class='dropdown-item'>Profile</a> 
+                  <a href='/history' class='dropdown-item'>History/Receipt</a> 
+                  <a href='/logout' class='dropdown-item'>Logout</a> ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+                      viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                  </svg> <%= locals.session.username %>
+              </a>
+              <% } else { %>
+              <a class="nav-link" href="/login">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                  </svg> 
+                  Login
+              </a>
+              <% } %>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const profilePopover = new bootstrap.Popover(document.getElementById('profilePopover'), {
+          html: true,  // Allow HTML content inside the popover
+          trigger: 'click'  // Set the trigger to click
+      });
+
+      // Close popover when clicking anywhere outside of it
+      document.addEventListener('click', function (event) {
+          const popover = document.getElementById('profilePopover');
+          if (!popover.contains(event.target)) {
+              const bsPopover = bootstrap.Popover.getInstance(popover);
+              if (bsPopover) {
+                  bsPopover.hide();
+              }
+          }
+      });
+  });
+</script>

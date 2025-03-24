@@ -1,0 +1,124 @@
+<%- include('partials/head.ejs', { pageTitle: 'History' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="receipt-container">
+   <div class="col-md-12">
+      
+            <!-- Loop through orders -->
+            <% receipt.forEach((order, index) => { %>
+                  
+                  <div class="invoice" style="margin-bottom: 35px;">
+                     <!-- Invoice header -->
+                     <div class="invoice-company text-inverse f-w-600">
+                        <span class="pull-right hidden-print">
+                           <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+                        </span>
+                        DEKTEADGAME, Inc
+                     </div>
+                     <!-- Invoice header end -->
+                     <div class="invoice-header">
+                        <div class="invoice-from">
+                           <small>from</small>
+                           <address class="m-t-5 m-b-5">
+                              <strong class="text-inverse">DEKTEADGAME, Inc.</strong><br>
+                              18/84 LookMoon Street<br>
+                              Chiangmai, 50100<br>
+                              Phone: +66 903 7485<br>
+                              Fax: (321) 451-7860
+                           </address>
+                        </div>
+                        <div class="invoice-to">
+                           <small>to</small>
+                           <address class="m-t-5 m-b-5">
+                              <strong class="text-inverse"><%= order.first_name %> <%= order.last_name %></strong><br>
+                              <p><%= order.address %></p>
+                           </address>
+                        </div>
+                        <div class="invoice-date">
+                           <%                      
+                           const date = new Date();
+                           const monthName = date.toLocaleString('en-US', { month: 'long' });
+                           %>
+                           <small>Invoice / <%= monthName  %> period</small>
+                           <div class="date text-inverse m-t-5"><%= order.order_date %></div>
+                           <div class="invoice-detail">
+                              #<%= Math.floor(Math.random() * 900000) + 100000 %>DTK<%= order.order_id %><br>                           
+                           </div>
+                        </div>
+                     </div>
+
+                     <!-- Invoice content -->
+                     <div class="invoice-content">
+                        <div class="table-responsive">
+                           <table class="table table-invoice">
+                              <thead>
+                                 <tr>
+                                    <th>TASK DESCRIPTION</th>
+                                    <th class="text-center" width="10%">PRICE</th>
+                                    <th class="text-center" width="10%">PLATFORM</th>
+                                    <th class="text-center" width="10%">QUANTITY</th>
+                                    <th class="text-right" width="20%">TOTAL PRICE</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <% order.items.forEach(item => { %>
+                                    <tr>
+                                       <td>
+                                          <span class="text-inverse" style="font-weight: 600;" ><%= item.title %></span><br>
+                                          <small><%= item.description %></small>
+                                       </td>
+                                       <td class="text-center"><%= item.price_at_purchase %></td>
+                                       <td class="text-center"><%= item.platform %></td>
+                                       <td class="text-center"><%= item.quantity %></td>
+                                       <% const totalPrice = item.price_at_purchase * item.quantity %>
+                                       <td class="text-right"><%= totalPrice.toFixed(2) %></td>
+                                    </tr>
+                                 <% }) %>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+
+                     <!-- Invoice price -->
+                     <div class="invoice-price">
+                        <div class="invoice-price-left">
+                           <div class="invoice-price-row">
+                              <div class="sub-price">
+                                 <small>SUBTOTAL</small>
+                                 <span class="text-inverse"><%= order.total_amount %></span>
+                              </div>
+                              <div class="sub-price">
+                                 <i class="fa fa-plus text-muted"></i>
+                              </div>
+                              <div class="sub-price">
+                                 <small>PAYPAL FEE (7%)</small>
+                                 <% 
+                                 // คำนวณค่า Paypal Fee
+                                 const paypalFee = order.total_amount * 0.07; 
+                                 %>
+                                 <span class="text-inverse"><%= paypalFee.toFixed(2) %></span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="invoice-price-right">
+                           <small>TOTAL</small> 
+                           <%
+                           const totalAmount = Number(order.total_amount);
+                           const total = totalAmount + paypalFee; 
+                           %>
+                           <span class="f-w-600"><%= total.toFixed(2) %></span>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  
+                  
+            <% }) %>
+
+           
+      </div>
+   </div>
+</div>
+<%- include('partials/footer.ejs') %>
+
+

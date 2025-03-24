@@ -1,0 +1,156 @@
+<%- include('partials/head.ejs', { pageTitle: 'Shopping Cart' }) %>
+<%- include('partials/nav.ejs') %>
+
+<div class="container py-3 py-md-5">
+  <div class="cartpage-card">
+    <h1 class="mb-3 mb-md-4">Shopping Cart</h1>
+
+    <% if(cart && cart.length > 0) { %>
+      <% cart.forEach(item => { %>
+        <!-- Cart Item -->
+        <div class="row cartpage-item align-items-center mb-2 mb-md-3 position-relative">
+          <!-- Game Image -->
+          <div class="col-3 col-md-2">
+            <img 
+              src="<%= item.icongame_url %>" 
+              alt="<%= item.title %>" 
+              class="img-fluid rounded-3"
+              loading="lazy"
+            >
+          </div>
+
+          <!-- Game Details -->
+          <div class="col-8 col-md-7 mt-0 mt-md-2 pe-0">
+            <h2 class="mb-1 fs-6 fs-md-5">
+              <%= item.title %> 
+              <span class="text-muted d-block d-md-inline">(<%= item.platform %>)</span> 
+              ×<%= item.quantity %>
+            </h2>
+            
+            <!-- Price Section -->
+            <div class="d-flex flex-wrap align-items-center">
+              <% if(item.promotion_price) { %>
+                <span class="cartpage-original-price me-2">฿<%= item.price %></span>
+                <span class="cartpage-discount-price">฿<%= item.promotion_price %></span>
+              <% } else { %>
+                <span class="cartpage-price">฿<%= item.price %></span>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Delete Button -->
+          <div class="col-4 col-md-3 text-end mt-0 mt-md-2">
+            <form 
+              action="/cart/delete/<%= item.cart_id %>/<%= item.game_id %>/<%= item.platform %>" 
+              method="post"
+            >
+              <button 
+                type="submit" 
+                class="btn btn-outline-danger btn-sm"
+                aria-label="Remove item"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="14" 
+                  height="14" 
+                  fill="currentColor" 
+                  class="bi bi-trash3-fill d-md-none" 
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                </svg>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="16" 
+                  height="16" 
+                  fill="currentColor" 
+                  class="bi bi-trash3-fill d-none d-md-block" 
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+
+      <!-- Cart Summary -->
+      <div class="row cartpage-summary align-items-center mt-4 g-2 g-md-3">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <h4 class="mb-0 fs-5 fs-md-4">Estimated Total</h4>
+        </div>
+        
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="cartpage-summary-price mb-2 mb-md-3" id="summary-price">฿0.00</div>
+          <div class="d-flex flex-column flex-md-row gap-2 justify-content-end">
+            <a href="/" class="btn btn-outline-secondary cartpage-btn-continue px-3 px-md-4">
+              Continue Shopping
+            </a>
+            <button 
+              class="btn btn-primary px-4 px-md-5" 
+              onclick="window.location.href='/thankyou';"
+            >
+              Checkout Now
+            </button>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+      <!-- Empty Cart State -->
+      <div class="empty-cart text-center py-4 py-md-5">
+        <div class="empty-cart-icon mb-3 mb-md-4">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="64" 
+            height="64" 
+            fill="#0072ce" 
+            class="bi bi-cart-x" 
+            viewBox="0 0 16 16"
+          >
+            <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
+            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+          </svg>
+        </div>
+        
+        <h3 class="mb-2 mb-md-3 fs-4 fs-md-3">Your Cart Feels Lonely</h3>
+        <p class="text-muted mb-3 mb-md-4">Discover amazing games waiting for you!</p>
+        
+        <a href="/browse" class="btn btn-primary btn-lg px-4 px-md-5">
+          Browse Games
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            fill="currentColor" 
+            class="bi bi-arrow-right ms-2" 
+            viewBox="0 0 16 16"
+          >
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </a>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    // Calculate total price
+    let totalPrice = 0;
+    const cartItems = JSON.parse('<%- JSON.stringify(cart || []) %>');
+
+    if (cartItems?.length > 0) {
+      cartItems.forEach(item => {
+        const price = item.promotion_price || item.price;
+        totalPrice += price * item.quantity;
+      });
+      
+      // Format price with commas
+      const formattedPrice = totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      $('#summary-price').text(`฿${formattedPrice}`);
+    }
+  });
+</script>
+
+<%- include('partials/footer.ejs') %>
